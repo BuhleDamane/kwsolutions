@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Academic Excellence Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+     <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="/api/placeholder/120/40" alt="Academic Excellence Logo" class="logo-img">
+                <span class="logo-text"></span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <button class="search-btn" id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-dropdown" id="search-dropdown">
+                        <input type="text" placeholder="Search services, resources..." class="search-input" id="search-input">
+                        <button class="search-submit" id="search-submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <a href="login.html" class="login-btn">
+                    <i class="fas fa-user"></i>
+                    <span>Login</span>
+                </a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Get In Touch</h1>
+                <p class="hero-subtitle">Ready to excel in your academic journey? Let's discuss how we can help you achieve your goals.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h2>Send us a Message</h2>
+                        <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="assignment-review">Assignment Review</option>
+                                <option value="dissertation-help">Dissertation Assistance</option>
+                                <option value="tutoring">Tutoring Services</option>
+                                <option value="proofreading">Proofreading & Editing</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="urgency">Urgency Level</label>
+                            <select id="urgency" name="urgency">
+                                <option value="">Select urgency</option>
+                                <option value="low">Low - More than 2 weeks</option>
+                                <option value="medium">Medium - 1-2 weeks</option>
+                                <option value="high">High - Less than 1 week</option>
+                                <option value="urgent">Urgent - Within 48 hours</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Please provide details about your requirements, academic level, word count, deadline, and any specific instructions..." required></textarea>
+                            <span class="error-message"></span>
+                            <div class="character-count">
+                                <span id="charCount">0</span>/1000 characters
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and <a href="#" class="privacy-link">Privacy Policy</a> *
+                            </label>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <span class="checkmark"></span>
+                                Subscribe to our newsletter for academic tips and updates
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loader" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Sending...
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info-container">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p>Ready to start your academic success journey? Reach out to us through any of these channels.</p>
+                        
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Phone</h4>
+                                    <p>+27 123 456 789</p>
+                                    <small>Mon - Fri: 8:00 AM - 6:00 PM</small>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Email</h4>
+                                    <p>info@academicexcellence.co.za</p>
+                                    <small>We respond within 24 hours</small>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>WhatsApp</h4>
+                                    <p>+27 123 456 789</p>
+                                    <small>Quick responses, 24/7</small>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Location</h4>
+                                    <p>Johannesburg, South Africa</p>
+                                    <small>Serving students nationwide</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <h4>Connect With Us</h4>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-icon whatsapp" aria-label="WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="#" class="social-icon email" aria-label="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Service Calculator -->
+                    <div class="quick-calculator">
+                        <h4>Quick Price Estimate</h4>
+                        <p>Get an instant estimate for our services</p>
+                        
+                        <div class="calculator-form">
+                            <select id="serviceType" class="calc-select">
+                                <option value="">Select Service</option>
+                                <option value="proofreading" data-rate="15">Proofreading (R15/page)</option>
+                                <option value="editing" data-rate="25">Editing (R25/page)</option>
+                                <option value="review" data-rate="35">Assignment Review (R35/page)</option>
+                                <option value="tutoring" data-rate="200">Tutoring (R200/hour)</option>
+                            </select>
+                            
+                            <input type="number" id="quantity" class="calc-input" placeholder="Pages/Hours" min="1">
+                            
+                            <div class="estimate-result">
+                                <div class="estimate-breakdown">
+                                    <div class="breakdown-item">
+                                        <span>Service Cost:</span>
+                                        <span id="serviceCost">R0</span>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <span>Consultation Fee:</span>
+                                        <span>R100</span>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <span>Deposit (30%):</span>
+                                        <span id="depositAmount">R0</span>
+                                    </div>
+                                    <div class="breakdown-total">
+                                        <span>Total Estimate:</span>
+                                        <span id="totalEstimate">R100</span>
+                                    </div>
+                                </div>
+                                <button class="get-quote-btn">Get Detailed Quote</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our services</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How quickly can you review my assignment?</h4>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our standard turnaround time is 24-48 hours for most assignments. For urgent requests, we offer same-day service with an additional rush fee. The exact timeframe depends on the length and complexity of your work.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What payment methods do you accept?</h4>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept EFT, credit cards, and mobile payments. A consultation fee and deposit are required upfront, with the balance due upon completion of your project.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you provide revision services?</h4>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer one free revision within 7 days of delivery if the work doesn't meet the original specifications. Additional revisions may incur extra charges.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is my work kept confidential?</h4>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We maintain strict confidentiality for all client work. Your documents and personal information are never shared with third parties and are securely stored.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Message Sent Successfully!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for contacting us. We've received your message and will get back to you within 24 hours.</p>
+                <p>For urgent matters, please contact us directly via WhatsApp or phone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-close-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+ <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/api/placeholder/120/40" alt="Academic Excellence Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">AcademicExcel</span>
+                    </div>
+                    <p class="footer-desc">Empowering students to achieve academic excellence through personalized support and professional guidance.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://facebook.com/academicexcel" class="social-link facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/academicexcel" class="social-link twitter" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/academicexcel" class="social-link instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/academicexcel" class="social-link linkedin" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://youtube.com/academicexcel" class="social-link youtube" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#assignment-review">Assignment Review</a></li>
+                        <li><a href="services.html#dissertation">Dissertation Support</a></li>
+                        <li><a href="services.html#tutoring">Personal Tutoring</a></li>
+                        <li><a href="services.html#proofreading">Proofreading</a></li>
+                        <li><a href="services.html#editing">Professional Editing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Portal</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#support">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@academicexcel.co.za</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+27 (0) 11 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Johannesburg, South Africa</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Fri: 8:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Academic Excellence Services. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#careers">Careers</a>
+                        <a href="#partnership">Partnership</a>
+                        <a href="#media">Media Kit</a>
+                        <a href="#sitemap">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script>
+    // Contact Form Validation and Submission
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Clear previous error messages
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(msg => msg.textContent = '');
+        
+        // Validate form fields
+        let isValid = true;
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
+        const subject = document.getElementById('subject');
+        const message = document.getElementById('message');
+        
+        if (!firstName.value.trim()) {
+            firstName.nextElementSibling.textContent = 'First name is required.';
+            isValid = false;
+        }
+        if (!lastName.value.trim()) {
+            lastName.nextElementSibling.textContent = 'Last name is required.';
+            isValid = false;
+        }
+        if (!email.value.trim() || !validateEmail(email.value)) {
+            email.nextElementSibling.textContent = 'Valid email is required.';
+            isValid = false;
+        }
+        if (!subject.value) {
+            subject.nextElementSibling.textContent = 'Subject is required.';
+            isValid = false;
+        }
+        if (!message.value.trim()) {
+            message.nextElementSibling.textContent = 'Message cannot be empty.';
+            isValid = false;
+        }
+        
+        if (isValid) {
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.querySelector('.btn-text').style.display = 'none';
+            submitBtn.querySelector('.btn-loader').style.display = 'inline-block';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.querySelector('.btn-text').style.display = 'inline-block';
+                submitBtn.querySelector('.btn-loader').style.display = 'none';
+                
+                // Show success modal
+                document.getElementById('successModal').style.display = 'block';
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                updateCharCount();
+            }, 2000);
+        }
+    });
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).to
+</script>
+    <script src="script.js"></script>
+</body>
+</html>
