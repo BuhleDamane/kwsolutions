@@ -439,67 +439,574 @@
         </div>
     </footer>
 <script>
-    // Contact Form Validation and Submission
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Clear previous error messages
-        const errorMessages = document.querySelectorAll('.error-message');
-        errorMessages.forEach(msg => msg.textContent = '');
-        
-        // Validate form fields
-        let isValid = true;
-        const firstName = document.getElementById('firstName');
-        const lastName = document.getElementById('lastName');
-        const email = document.getElementById('email');
-        const subject = document.getElementById('subject');
-        const message = document.getElementById('message');
-        
-        if (!firstName.value.trim()) {
-            firstName.nextElementSibling.textContent = 'First name is required.';
-            isValid = false;
-        }
-        if (!lastName.value.trim()) {
-            lastName.nextElementSibling.textContent = 'Last name is required.';
-            isValid = false;
-        }
-        if (!email.value.trim() || !validateEmail(email.value)) {
-            email.nextElementSibling.textContent = 'Valid email is required.';
-            isValid = false;
-        }
-        if (!subject.value) {
-            subject.nextElementSibling.textContent = 'Subject is required.';
-            isValid = false;
-        }
-        if (!message.value.trim()) {
-            message.nextElementSibling.textContent = 'Message cannot be empty.';
-            isValid = false;
-        }
-        
-        if (isValid) {
-            // Show loading state
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.querySelector('.btn-text').style.display = 'none';
-            submitBtn.querySelector('.btn-loader').style.display = 'inline-block';
+    // Contact Page JavaScript Functionality
+
+// Initialize contact page when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeContactPage();
+});
+
+function initializeContactPage() {
+    // Only run on contact page
+    if (!document.getElementById('contactForm')) return;
+    
+    initializeFormValidation();
+    initializeQuickCalculator();
+    initializeFAQ();
+    initializeCharacterCounter();
+    initializeFormSubmission();
+}
+
+// Form Validation
+function initializeFormValidation() {
+    const form = document.getElementById('contactForm');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearFieldError);
+    });
+    
+    // Real-time email validation
+    const emailInput = document.getElementById('email');
+    if (emailInput) {
+        emailInput.addEventListener('input', validateEmailRealTime);
+    }
+    
+    // Phone number formatting
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', formatPhoneNumber);
+    }
+}
+
+function validateField(event) {
+    const field = event.target;
+    const fieldName = field.name;
+    const value = field.value.trim();
+    
+    clearFieldError(event);
+    
+    switch (fieldName) {
+        case 'firstName':
+        case 'lastName':
+            if (!value) {
+                showFieldError(field, 'This field is required');
+                return false;
+            }
+            if (value.length < 2) {
+                showFieldError(field, 'Must be at least 2 characters');
+                return false;
+            }
+            if (!/^[a-zA-Z\s'-]+$/.test(value)) {
+                showFieldError(field, 'Only letters, spaces, hyphens and apostrophes allowed');
+                return false;
+            }
+            break;
             
-            // Simulate form submission
-            setTimeout(() => {
-                submitBtn.querySelector('.btn-text').style.display = 'inline-block';
-                submitBtn.querySelector('.btn-loader').style.display = 'none';
-                
-                // Show success modal
-                document.getElementById('successModal').style.display = 'block';
-                
-                // Reset form
-                document.getElementById('contactForm').reset();
-                updateCharCount();
-            }, 2000);
+        case 'email':
+            if (!value) {
+                showFieldError(field, 'Email is required');
+                return false;
+            }
+            if (!isValidEmail(value)) {
+                showFieldError(field, 'Please enter a valid email address');
+                return false;
+            }
+            break;
+            
+        case 'phone':
+            if (value && !isValidPhone(value)) {
+                showFieldError(field, 'Please enter a valid phone number');
+                return false;
+            }
+            break;
+            
+        case 'subject':
+            if (!value) {
+                showFieldError(field, 'Please select a subject');
+                return false;
+            }
+            break;
+            
+        case 'message':
+            if (!value) {
+                showFieldError(field, 'Message is required');
+                return false;
+            }
+            if (value.length < 10) {
+                showFieldError(field, 'Message must be at least 10 characters');
+                return false;
+            }
+            if (value.length > 1000) {
+                showFieldError(field, 'Message must be less than 1000 characters');
+                return false;
+            }
+            break;
+            
+        case 'terms':
+            if (!field.checked) {
+                showFieldError(field, 'You must agree to the terms and conditions');
+                return false;
+            }
+            break;
+    }
+    
+    return true;
+}
+
+function clearFieldError(event) {
+    const field = event.target;
+    field.classList.remove('error');
+    const errorMessage = field.parentNode.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.textContent = '';
+        errorMessage.classList.remove('show');
+    }
+}
+
+function showFieldError(field, message) {
+    field.classList.add('error');
+    const errorMessage = field.parentNode.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add('show');
+    }
+}
+
+function validateEmailRealTime(event) {
+    const email = event.target.value;
+    const field = event.target;
+    
+    if (email.length > 0 && !isValidEmail(email)) {
+        field.style.borderColor = '#e74c3c';
+    } else if (email.length > 0) {
+        field.style.borderColor = '#27ae60';
+    } else {
+        field.style.borderColor = '#EDEDED';
+    }
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function formatPhoneNumber(event) {
+    let value = event.target.value.replace(/\D/g, '');
+    
+    if (value.startsWith('27')) {
+        value = value.substring(2);
+    } else if (value.startsWith('0')) {
+        value = value.substring(1);
+    }
+    
+    if (value.length >= 9) {
+        value = value.substring(0, 9);
+        value = value.replace(/(\d{2})(\d{3})(\d{4})/, '$1 $2 $3');
+        event.target.value = '+27 ' + value;
+    } else {
+        event.target.value = value;
+    }
+}
+
+function isValidPhone(phone) {
+    const phoneRegex = /^(\+27|0)\s?\d{2}\s?\d{3}\s?\d{4}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+}
+
+// Character counter for message field
+function initializeCharacterCounter() {
+    const messageField = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    
+    if (messageField && charCount) {
+        messageField.addEventListener('input', function() {
+            const count = this.value.length;
+            charCount.textContent = count;
+            
+            if (count > 1000) {
+                charCount.style.color = '#e74c3c';
+            } else if (count > 800) {
+                charCount.style.color = '#f39c12';
+            } else {
+                charCount.style.color = '#27ae60';
+            }
+        });
+    }
+}
+
+// Quick Calculator
+function initializeQuickCalculator() {
+    const serviceType = document.getElementById('serviceType');
+    const quantity = document.getElementById('quantity');
+    
+    if (serviceType && quantity) {
+        serviceType.addEventListener('change', calculateEstimate);
+        quantity.addEventListener('input', calculateEstimate);
+    }
+}
+
+function calculateEstimate() {
+    const serviceType = document.getElementById('serviceType');
+    const quantity = document.getElementById('quantity');
+    const serviceCost = document.getElementById('serviceCost');
+    const depositAmount = document.getElementById('depositAmount');
+    const totalEstimate = document.getElementById('totalEstimate');
+    
+    if (!serviceType.value || !quantity.value || quantity.value <= 0) {
+        serviceCost.textContent = 'R0';
+        depositAmount.textContent = 'R0';
+        totalEstimate.textContent = 'R100';
+        return;
+    }
+    
+    const rate = parseInt(serviceType.selectedOptions[0].dataset.rate);
+    const qty = parseInt(quantity.value);
+    const consultationFee = 100;
+    
+    const cost = rate * qty;
+    const deposit = Math.round(cost * 0.3);
+    const total = cost + consultationFee;
+    
+    serviceCost.textContent = `R${cost.toLocaleString()}`;
+    depositAmount.textContent = `R${deposit.toLocaleString()}`;
+    totalEstimate.textContent = `R${total.toLocaleString()}`;
+}
+
+// FAQ Functionality
+function initializeFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            faqItems.forEach(faq => faq.classList.remove('active'));
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+}
+
+// Form Submission
+function initializeFormSubmission() {
+    const form = document.getElementById('contactForm');
+    
+    if (form) {
+        form.addEventListener('submit', handleFormSubmission);
+    }
+}
+
+async function handleFormSubmission(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoader = submitBtn.querySelector('.btn-loader');
+    
+    // Validate all fields
+    if (!validateAllFields(form)) {
+        showNotification('Please correct the errors in the form', 'error');
+        return;
+    }
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoader.style.display = 'flex';
+    form.classList.add('loading');
+    
+    try {
+        // Simulate form submission (replace with actual API call)
+        await simulateFormSubmission(new FormData(form));
+        
+        // Show success modal
+        showSuccessModal();
+        
+        // Reset form
+        form.reset();
+        resetFormState();
+        
+        // Reset calculator
+        document.getElementById('serviceCost').textContent = 'R0';
+        document.getElementById('depositAmount').textContent = 'R0';
+        document.getElementById('totalEstimate').textContent = 'R100';
+        
+    } catch (error) {
+        console.error('Form submission error:', error);
+        showNotification('There was an error sending your message. Please try again.', 'error');
+    } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+        form.classList.remove('loading');
+    }
+}
+
+function validateAllFields(form) {
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        const event = { target: input };
+        if (!validateField(event)) {
+            isValid = false;
         }
     });
+    
+    return isValid;
+}
 
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).to
+function resetFormState() {
+    const inputs = document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea');
+    inputs.forEach(input => {
+        input.classList.remove('error');
+        input.style.borderColor = '';
+        const errorMessage = input.parentNode.querySelector('.error-message');
+        if (errorMessage) {
+            errorMessage.textContent = '';
+            errorMessage.classList.remove('show');
+        }
+    });
+    
+    // Reset character counter
+    const charCount = document.getElementById('charCount');
+    if (charCount) {
+        charCount.textContent = '0';
+        charCount.style.color = '#666';
+    }
+}
+
+// Simulate form submission (replace with actual API integration)
+function simulateFormSubmission(formData) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // Simulate random success/failure for demo
+            if (Math.random() > 0.1) { // 90% success rate
+                resolve({ success: true, message: 'Form submitted successfully' });
+            } else {
+                reject(new Error('Simulated network error'));
+            }
+        }, 2000);
+    });
+}
+
+// Success Modal
+function showSuccessModal() {
+    const modal = document.getElementById('successModal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Auto-close after 5 seconds
+        setTimeout(() => {
+            closeModal();
+        }, 5000);
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('successModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('successModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Notification system
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.remove()">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    // Add styles if not already added
+    if (!document.querySelector('#notification-styles')) {
+        const styles = document.createElement('style');
+        styles.id = 'notification-styles';
+        styles.textContent = `
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #FFFFFF;
+                border-radius: 8px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                padding: 15px 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                z-index: 1001;
+                min-width: 300px;
+                max-width: 500px;
+                animation: slideInRight 0.3s ease-out;
+            }
+            .notification-error {
+                border-left: 4px solid #e74c3c;
+            }
+            .notification-success {
+                border-left: 4px solid #27ae60;
+            }
+            .notification-content {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex: 1;
+            }
+            .notification-content i {
+                font-size: 1.2rem;
+            }
+            .notification-error .notification-content i {
+                color: #e74c3c;
+            }
+            .notification-success .notification-content i {
+                color: #27ae60;
+            }
+            .notification-close {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+                color: #666;
+                font-size: 1rem;
+            }
+            .notification-close:hover {
+                color: #333;
+            }
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+    
+    // Add to DOM
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Smooth scrolling for anchor links
+document.addEventListener('click', function(event) {
+    if (event.target.matches('a[href^="#"]')) {
+        event.preventDefault();
+        const targetId = event.target.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+});
+
+// Form field focus effects
+document.addEventListener('DOMContentLoaded', function() {
+    const formGroups = document.querySelectorAll('.form-group');
+    
+    formGroups.forEach(group => {
+        const input = group.querySelector('input, select, textarea');
+        if (input) {
+            input.addEventListener('focus', function() {
+                group.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                group.classList.remove('focused');
+                if (!this.value) {
+                    group.classList.remove('filled');
+                } else {
+                    group.classList.add('filled');
+                }
+            });
+            
+            // Check if field has value on load
+            if (input.value) {
+                group.classList.add('filled');
+            }
+        }
+    });
+});
+
+// Keyboard accessibility improvements
+document.addEventListener('keydown', function(event) {
+    // Close modal with Escape key
+    if (event.key === 'Escape') {
+        const modal = document.getElementById('successModal');
+        if (modal && modal.style.display === 'block') {
+            closeModal();
+        }
+    }
+    
+    // FAQ keyboard navigation
+    if (event.target.classList.contains('faq-question')) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            event.target.click();
+        }
+    }
+});
+
+// Add loading animation to calculator
+document.addEventListener('DOMContentLoaded', function() {
+    const getQuoteBtn = document.querySelector('.get-quote-btn');
+    if (getQuoteBtn) {
+        getQuoteBtn.addEventListener('click', function() {
+            const serviceType = document.getElementById('serviceType');
+            const quantity = document.getElementById('quantity');
+            
+            if (!serviceType.value || !quantity.value) {
+                showNotification('Please select a service and enter quantity first', 'error');
+                return;
+            }
+            
+            // Simulate navigation to services page with pre-filled form
+            showNotification('Redirecting to detailed quote form...', 'success');
+            setTimeout(() => {
+                window.location.href = 'services.html?service=' + serviceType.value + '&quantity=' + quantity.value;
+            }, 1500);
+        });
+    }
+});
 </script>
     <script src="script.js"></script>
 </body>

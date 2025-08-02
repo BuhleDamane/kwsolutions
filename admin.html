@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Academic Excellence Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+     <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="/api/placeholder/120/40" alt="Academic Excellence Logo" class="logo-img">
+                <span class="logo-text"></span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <button class="search-btn" id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-dropdown" id="search-dropdown">
+                        <input type="text" placeholder="Search services, resources..." class="search-input" id="search-input">
+                        <button class="search-submit" id="search-submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <a href="login.html" class="login-btn">
+                    <i class="fas fa-user"></i>
+                    <span>Login</span>
+                </a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-nav">
+            <div class="admin-logo">
+                <h2><i class="fas fa-user-shield"></i> Admin Portal</h2>
+            </div>
+            <div class="admin-profile">
+                <div class="notification-bell" id="adminBell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count" id="adminNotificationCount">3</span>
+                </div>
+                <div class="admin-user">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Admin" class="admin-avatar">
+                    <span>Dr. Smith</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="#dashboard" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#calendar" data-section="calendar">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Calendar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#clients" data-section="clients">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#submissions" data-section="submissions">
+                            <i class="fas fa-file-upload"></i>
+                            <span>Submissions</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#messages" data-section="messages">
+                            <i class="fas fa-comments"></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#deliver" data-section="deliver">
+                            <i class="fas fa-share"></i>
+                            <span>Deliver Work</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back! Here's what's happening with your clients today.</p>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Active Clients</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Pending Tasks</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>15</h3>
+                            <p>Completed Today</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>R12,500</h3>
+                            <p>This Month</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-file-upload"></i>
+                            <div class="activity-content">
+                                <p><strong>John Smith</strong> submitted a new assignment</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-comment"></i>
+                            <div class="activity-content">
+                                <p><strong>Sarah Johnson</strong> sent a message</p>
+                                <span class="activity-time">4 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-credit-card"></i>
+                            <div class="activity-content">
+                                <p><strong>Mike Davis</strong> completed payment</p>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar Section -->
+            <section id="calendar" class="admin-section">
+                <div class="section-header">
+                    <h1>Calendar & Deadlines</h1>
+                    <p>Manage client deadlines and important dates</p>
+                </div>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="calendar-nav" id="prevMonth">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h2 id="currentMonth">August 2025</h2>
+                        <button class="calendar-nav" id="nextMonth">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar will be generated by JavaScript -->
+                    </div>
+                </div>
+                <div class="calendar-events">
+                    <h3>Upcoming Deadlines</h3>
+                    <div class="event-list" id="eventList">
+                        <!-- Events will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Clients Section -->
+            <section id="clients" class="admin-section">
+                <div class="section-header">
+                    <h1>Client Management</h1>
+                    <p>View and manage all your clients</p>
+                </div>
+                <div class="clients-table-container">
+                    <table class="clients-table">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Email</th>
+                                <th>Active Projects</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b605?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Client">
+                                        <span>Sarah Johnson</span>
+                                    </div>
+                                </td>
+                                <td>sarah.j@email.com</td>
+                                <td>2</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>
+                                    <button class="action-btn view-btn" onclick="viewClient('sarah')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn message-btn" onclick="messageClient('sarah')">
+                                        <i class="fas fa-comment"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Client">
+                                        <span>John Smith</span>
+                                    </div>
+                                </td>
+                                <td>john.smith@email.com</td>
+                                <td>1</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>
+                                    <button class="action-btn view-btn" onclick="viewClient('john')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn message-btn" onclick="messageClient('john')">
+                                        <i class="fas fa-comment"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="client-info">
+                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Client">
+                                        <span>Emma Wilson</span>
+                                    </div>
+                                </td>
+                                <td>emma.wilson@email.com</td>
+                                <td>3</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>
+                                    <button class="action-btn view-btn" onclick="viewClient('emma')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn message-btn" onclick="messageClient('emma')">
+                                        <i class="fas fa-comment"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Submissions Section -->
+            <section id="submissions" class="admin-section">
+                <div class="section-header">
+                    <h1>Client Submissions</h1>
+                    <p>Review and manage client work submissions</p>
+                </div>
+                <div class="submissions-grid">
+                    <div class="submission-card">
+                        <div class="submission-header">
+                            <h3>Dissertation Chapter 1</h3>
+                            <span class="submission-status new">New</span>
+                        </div>
+                        <div class="submission-info">
+                            <p><strong>Client:</strong> Sarah Johnson</p>
+                            <p><strong>Due Date:</strong> August 16, 2025</p>
+                            <p><strong>Service:</strong> Proofreading & Editing</p>
+                        </div>
+                        <div class="submission-actions">
+                            <button class="btn-primary">Review</button>
+                            <button class="btn-secondary">Download</button>
+                        </div>
+                    </div>
+                    <div class="submission-card">
+                        <div class="submission-header">
+                            <h3>Marketing Assignment</h3>
+                            <span class="submission-status in-progress">In Progress</span>
+                        </div>
+                        <div class="submission-info">
+                            <p><strong>Client:</strong> John Smith</p>
+                            <p><strong>Due Date:</strong> August 20, 2025</p>
+                            <p><strong>Service:</strong> Assignment Review</p>
+                        </div>
+                        <div class="submission-actions">
+                            <button class="btn-primary">Continue</button>
+                            <button class="btn-secondary">Download</button>
+                        </div>
+                    </div>
+                    <div class="submission-card">
+                        <div class="submission-header">
+                            <h3>Research Proposal</h3>
+                            <span class="submission-status completed">Completed</span>
+                        </div>
+                        <div class="submission-info">
+                            <p><strong>Client:</strong> Emma Wilson</p>
+                            <p><strong>Due Date:</strong> August 10, 2025</p>
+                            <p><strong>Service:</strong> Writing Support</p>
+                        </div>
+                        <div class="submission-actions">
+                            <button class="btn-success">Delivered</button>
+                            <button class="btn-secondary">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messages" class="admin-section">
+                <div class="section-header">
+                    <h1>Client Messages</h1>
+                    <p>Communicate with your clients</p>
+                </div>
+                <div class="messages-container">
+                    <div class="chat-sidebar">
+                        <div class="chat-search">
+                            <input type="text" placeholder="Search clients..." class="chat-search-input">
+                        </div>
+                        <div class="chat-list">
+                            <div class="chat-item active" data-client="sarah">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b605?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Sarah">
+                                <div class="chat-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>Thanks for the feedback...</p>
+                                </div>
+                                <div class="chat-meta">
+                                    <span class="chat-time">2:30 PM</span>
+                                    <span class="chat-unread">2</span>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-client="john">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="John">
+                                <div class="chat-info">
+                                    <h4>John Smith</h4>
+                                    <p>When will the work be ready?</p>
+                                </div>
+                                <div class="chat-meta">
+                                    <span class="chat-time">1:15 PM</span>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-client="emma">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Emma">
+                                <div class="chat-info">
+                                    <h4>Emma Wilson</h4>
+                                    <p>Perfect! Thank you so much</p>
+                                </div>
+                                <div class="chat-meta">
+                                    <span class="chat-time">Yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-main">
+                        <div class="chat-header">
+                            <div class="chat-client-info">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b605?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Sarah">
+                                <div>
+                                    <h3>Sarah Johnson</h3>
+                                    <p>Online now</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message client-message">
+                                <div class="message-content">Hi Dr. Smith, I've uploaded my dissertation chapter. Could you please review it?</div>
+                                <div class="message-time">Today 1:30 PM</div>
+                            </div>
+                            <div class="message admin-message">
+                                <div class="message-content">Hello Sarah! I've received your chapter. I'll review it and provide feedback by tomorrow evening.</div>
+                                <div class="message-time">Today 1:45 PM</div>
+                            </div>
+                            <div class="message client-message">
+                                <div class="message-content">Thanks for the feedback on the previous chapter. It was really helpful!</div>
+                                <div class="message-time">Today 2:30 PM</div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type your message..." class="message-input" id="adminMessageInput">
+                            <button class="send-btn" id="adminSendBtn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deliver Work Section -->
+            <section id="deliver" class="admin-section">
+                <div class="section-header">
+                    <h1>Deliver Work to Client</h1>
+                    <p>Upload completed work and send it to clients</p>
+                </div>
+                <form class="delivery-form" id="deliveryForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="deliveryClient">Select Client</label>
+                            <select id="deliveryClient" required>
+                                <option value="">Choose a client...</option>
+                                <option value="sarah">Sarah Johnson</option>
+                                <option value="john">John Smith</option>
+                                <option value="emma">Emma Wilson</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectType">Project Type</label>
+                            <select id="projectType" required>
+                                <option value="">Select type...</option>
+                                <option value="assignment">Assignment Review</option>
+                                <option value="proofreading">Proofreading</option>
+                                <option value="editing">Editing</option>
+                                <option value="dissertation">Dissertation Support</option>
+                                <option value="tutoring">Tutoring Materials</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryTitle">Work Title</label>
+                        <input type="text" id="deliveryTitle" placeholder="e.g., Chapter 1 - Reviewed and Edited" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryDescription">Description & Notes</label>
+                        <textarea id="deliveryDescription" rows="4" placeholder="Provide details about the work completed, any specific notes for the client..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryFile">Upload File</label>
+                        <div class="file-upload-area" onclick="document.getElementById('deliveryFile').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload or drag and drop</p>
+                            <span>PDF, DOC, DOCX up to 10MB</span>
+                        </div>
+                        <input type="file" id="deliveryFile" accept=".pdf,.doc,.docx" style="display: none;" required>
+                        <div class="file-info" id="deliveryFileInfo" style="display: none;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryDeadline">Next Deadline (if applicable)</label>
+                        <input type="datetime-local" id="deliveryDeadline">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-share"></i>
+                            Deliver to Client
+                        </button>
+                        <button type="button" class="btn-secondary">Save as Draft</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="notification-modal" id="adminNotificationModal">
+        <div class="notification-content">
+            <div class="notification-header">
+                <h3>Notifications</h3>
+                <button class="close-btn" id="closeAdminNotifications">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="notification-list">
+                <div class="notification-item unread">
+                    <i class="fas fa-file-upload"></i>
+                    <div class="notification-text">
+                        <p>New submission from Sarah Johnson</p>
+                        <span>2 hours ago</span>
+                    </div>
+                </div>
+                <div class="notification-item unread">
+                    <i class="fas fa-credit-card"></i>
+                    <div class="notification-text">
+                        <p>Payment received from John Smith</p>
+                        <span>4 hours ago</span>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <i class="fas fa-comment"></i>
+                    <div class="notification-text">
+                        <p>New message from Emma Wilson</p>
+                        <span>1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Event Modal -->
+    <div class="event-modal" id="eventModal">
+        <div class="event-content">
+            <div class="event-header">
+                <h3>Event Details</h3>
+                <button class="close-btn" id="closeEventModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="event-details">
+                <h4 id="eventTitle">Client Deadline</h4>
+                <p id="eventDescription">Sarah Johnson - Dissertation Chapter 1 due</p>
+                <div class="event-meta">
+                    <p><strong>Date:</strong> <span id="eventDate">August 16, 2025</span></p>
+                    <p><strong>Client:</strong> <span id="eventClient">Sarah Johnson</span></p>
+                    <p><strong>Priority:</strong> <span id="eventPriority" class="priority-high">High</span></p>
+                </div>
+                <div class="event-actions">
+                    <button class="btn-primary">Contact Client</button>
+                    <button class="btn-secondary">Mark Complete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/api/placeholder/120/40" alt="Academic Excellence Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">AcademicExcel</span>
+                    </div>
+                    <p class="footer-desc">Empowering students to achieve academic excellence through personalized support and professional guidance.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://facebook.com/academicexcel" class="social-link facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/academicexcel" class="social-link twitter" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/academicexcel" class="social-link instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/academicexcel" class="social-link linkedin" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://youtube.com/academicexcel" class="social-link youtube" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#assignment-review">Assignment Review</a></li>
+                        <li><a href="services.html#dissertation">Dissertation Support</a></li>
+                        <li><a href="services.html#tutoring">Personal Tutoring</a></li>
+                        <li><a href="services.html#proofreading">Proofreading</a></li>
+                        <li><a href="services.html#editing">Professional Editing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Portal</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#support">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@academicexcel.co.za</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+27 (0) 11 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Johannesburg, South Africa</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Fri: 8:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Academic Excellence Services. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#careers">Careers</a>
+                        <a href="#partnership">Partnership</a>
+                        <a href="#media">Media Kit</a>
+                        <a href="#sitemap">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Admin Portal JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const navItems = document.querySelectorAll('.nav-item a');
+            const sections = document.querySelectorAll('.admin-section');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = this.dataset.section;
+                    
+                    // Update active nav item
+                    navItems.forEach(nav => nav.parentElement.classList.remove('active'));
+                    this.parentElement.classList.add('active');
+                    
+                    // Show target section
+                    sections.forEach(section => section.classList.remove('active'));
+                    document.getElementById(targetSection).classList.add('active');
+                });
+            });
+
+            // Calendar functionality
+            let currentDate = new Date();
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+
+            function generateCalendar(date) {
+                const year = date.getFullYear();
+                const month = date.getMonth();
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+
+                const calendarGrid = document.getElementById('calendarGrid');
+                calendarGrid.innerHTML = '';
+
+                // Add day headers
+                const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                dayHeaders.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day-header';
+                    dayHeader.textContent = day;
+                    calendarGrid.appendChild(dayHeader);
+                });
+
+                // Add empty cells for days before the first day of the month
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.className = 'calendar-day empty';
+                    calendarGrid.appendChild(emptyDay);
+                }
+
+                // Add days of the month
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = day;
+
+                    // Add event indicators for specific dates
+                    if (day === 16 || day === 20 || day === 25) {
+                        const eventDot = document.createElement('div');
+                        eventDot.className = 'event-dot';
+                        dayElement.appendChild(eventDot);
+                        dayElement.classList.add('has-event');
+                        
+                        dayElement.addEventListener('click', function() {
+                            showEventModal(day, month, year);
+                        });
+                    }
+
+                    // Highlight today
+                    const today = new Date();
+                    if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                        dayElement.classList.add('today');
+                    }
+
+                    calendarGrid.appendChild(dayElement);
+                }
+            }
+
+            function showEventModal(day, month, year) {
+                const eventModal = document.getElementById('eventModal');
+                const eventTitle = document.getElementById('eventTitle');
+                const eventDescription = document.getElementById('eventDescription');
+                const eventDate = document.getElementById('eventDate');
+                const eventClient = document.getElementById('eventClient');
+
+                // Sample event data based on date
+                let eventData = {};
+                if (day === 16) {
+                    eventData = {
+                        title: 'Dissertation Chapter Due',
+                        description: 'Sarah Johnson - Chapter 1 proofreading deadline',
+                        client: 'Sarah Johnson'
+                    };
+                } else if (day === 20) {
+                    eventData = {
+                        title: 'Assignment Review Due',
+                        description: 'John Smith - Marketing assignment review',
+                        client: 'John Smith'
+                    };
+                } else if (day === 25) {
+                    eventData = {
+                        title: 'Consultation Meeting',
+                        description: 'Emma Wilson - Dissertation planning session',
+                        client: 'Emma Wilson'
+                    };
+                }
+
+                eventTitle.textContent = eventData.title;
+                eventDescription.textContent = eventData.description;
+                eventDate.textContent = `${monthNames[month]} ${day}, ${year}`;
+                eventClient.textContent = eventData.client;
+
+                eventModal.style.display = 'flex';
+            }
+
+            // Calendar navigation
+            document.getElementById('prevMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                generateCalendar(currentDate);
+            });
+
+            document.getElementById('nextMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                generateCalendar(currentDate);
+            });
+
+            // Generate initial calendar
+            generateCalendar(currentDate);
+
+            // Notifications
+            document.getElementById('adminBell').addEventListener('click', function() {
+                document.getElementById('adminNotificationModal').style.display = 'flex';
+            });
+
+            document.getElementById('closeAdminNotifications').addEventListener('click', function() {
+                document.getElementById('adminNotificationModal').style.display = 'none';
+            });
+
+            document.getElementById('closeEventModal').addEventListener('click', function() {
+                document.getElementById('eventModal').style.display = 'none';
+            });
+
+            // Chat functionality
+            const chatItems = document.querySelectorAll('.chat-item');
+            chatItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    chatItems.forEach(chat => chat.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update chat header and messages based on selected client
+                    const clientName = this.querySelector('h4').textContent;
+                    document.querySelector('.chat-client-info h3').textContent = clientName;
+                    
+                    // Clear unread indicator
+                    const unreadBadge = this.querySelector('.chat-unread');
+                    if (unreadBadge) {
+                        unreadBadge.style.display = 'none';
+                    }
+                });
+            });
+
+            // Send message functionality
+            const messageInput = document.getElementById('adminMessageInput');
+            const sendBtn = document.getElementById('adminSendBtn');
+
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (message) {
+                    const chatMessages = document.getElementById('chatMessages');
+                    const messageElement = document.createElement('div');
+                    messageElement.className = 'message admin-message';
+                    messageElement.innerHTML = `
+                        <div class="message-content">${message}</div>
+                        <div class="message-time">Now</div>
+                    `;
+                    chatMessages.appendChild(messageElement);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    messageInput.value = '';
+                }
+            }
+
+            sendBtn.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // File upload functionality
+            const fileInput = document.getElementById('deliveryFile');
+            const fileInfo = document.getElementById('deliveryFileInfo');
+
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    const file = this.files[0];
+                    fileInfo.innerHTML = `
+                        <div class="file-selected">
+                            <i class="fas fa-file"></i>
+                            <span>${file.name}</span>
+                            <button type="button" onclick="clearFile()" class="clear-file">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                    fileInfo.style.display = 'block';
+                }
+            });
+
+            // Delivery form submission
+            document.getElementById('deliveryForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const client = document.getElementById('deliveryClient').value;
+                const projectType = document.getElementById('projectType').value;
+                const title = document.getElementById('deliveryTitle').value;
+                const description = document.getElementById('deliveryDescription').value;
+                const file = document.getElementById('deliveryFile').files[0];
+
+                if (client && projectType && title && file) {
+                    // Simulate delivery process
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Delivering...';
+                    submitBtn.disabled = true;
+
+                    setTimeout(() => {
+                        alert('Work delivered successfully to ' + document.getElementById('deliveryClient').selectedOptions[0].text);
+                        this.reset();
+                        fileInfo.style.display = 'none';
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                }
+            });
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                const notificationModal = document.getElementById('adminNotificationModal');
+                const eventModal = document.getElementById('eventModal');
+                
+                if (e.target === notificationModal) {
+                    notificationModal.style.display = 'none';
+                }
+                if (e.target === eventModal) {
+                    eventModal.style.display = 'none';
+                }
+            });
+        });
+
+        // Helper functions
+        function clearFile() {
+            document.getElementById('deliveryFile').value = '';
+            document.getElementById('deliveryFileInfo').style.display = 'none';
+        }
+
+        function viewClient(clientId) {
+            alert('Viewing details for client: ' + clientId);
+        }
+
+        function messageClient(clientId) {
+            // Switch to messages section and select client
+            document.querySelector('[data-section="messages"]').click();
+            setTimeout(() => {
+                const chatItem = document.querySelector(`[data-client="${clientId}"]`);
+                if (chatItem) {
+                    chatItem.click();
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
