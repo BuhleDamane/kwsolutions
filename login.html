@@ -5,415 +5,185 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Academic Support Services</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Bar (Same as index.html) -->
-     <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="/api/placeholder/120/40" alt="Academic Excellence Logo" class="logo-img">
-                <span class="logo-text"></span>
-            </div>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
-                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            
-            <div class="nav-actions">
-                <div class="search-container">
-                    <button class="search-btn" id="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <div class="search-dropdown" id="search-dropdown">
-                        <input type="text" placeholder="Search services, resources..." class="search-input" id="search-input">
-                        <button class="search-submit" id="search-submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-                <a href="login.html" class="login-btn">
-                    <i class="fas fa-user"></i>
-                    <span>Login</span>
-                </a>
-            </div>
-            
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
-
-    <!-- Main Content -->
-    <main class="login-main">
-        <div class="login-container">
+    <div class="login-container">
+        <div class="login-card">
             <!-- Login Form -->
-            <div class="auth-form" id="loginForm">
-                <div class="form-header">
-                    <h2>Welcome Back</h2>
-                    <p>Sign in to your account</p>
+            <div id="loginForm" class="auth-form active">
+                <div class="logo-section">
+                    <h1>Academic Support</h1>
+                    <p>Your academic success partner</p>
                 </div>
-
-                <form class="auth-form-content">
-                    <!-- User Type Selection -->
-                    <div class="user-type-selection">
-                        <label class="user-type-label">I am a:</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="userType" value="client" checked>
-                                <span class="radio-custom"></span>
-                                Client
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="userType" value="admin">
-                                <span class="radio-custom"></span>
-                                Admin
-                            </label>
-                        </div>
-                    </div>
-
+                
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Sign in to your account</p>
+                
+                <form id="loginFormElement">
                     <div class="form-group">
                         <label for="loginEmail">Email Address</label>
-                        <input type="email" id="loginEmail" name="email" required>
+                        <input type="email" id="loginEmail" required>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="loginPassword">Password</label>
-                        <div class="password-input">
-                            <input type="password" id="loginPassword" name="password" required>
-                            <i class="fas fa-eye toggle-password" onclick="togglePassword('loginPassword')"></i>
-                        </div>
+                        <input type="password" id="loginPassword" required>
                     </div>
-
-                    <div class="form-options">
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="remember">
-                            <span class="checkbox-custom"></span>
-                            Remember me
-                        </label>
-                        <a href="#" class="forgot-password">Forgot password?</a>
+                    
+                    <div class="form-group">
+                        <label for="userType">Login as:</label>
+                        <select id="userType" required>
+                            <option value="">Select User Type</option>
+                            <option value="client">Client</option>
+                            <option value="admin">Admin</option>
+                        </select>
                     </div>
-
-                    <button type="submit" class="auth-btn" onclick="handleLogin(event)">Sign In</button>
-
-                    <div class="auth-switch">
-                        <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+                    
+                    <div class="demo-credentials">
+                        <h4>Demo Credentials:</h4>
+                        <p><strong>Client:</strong> client@demo.com / password123</p>
+                        <p><strong>Admin:</strong> admin@demo.com / admin123</p>
                     </div>
+                    
+                    <button type="submit" class="btn-primary">Sign In</button>
                 </form>
-            </div>
-
-            <!-- Signup Form -->
-            <div class="auth-form hidden" id="signupForm">
-                <div class="form-header">
-                    <h2>Create Account</h2>
-                    <p>Join our academic support platform</p>
+                
+                <div class="auth-switch">
+                    <p>Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+                    <p><a href="index.html">← Back to Home</a></p>
                 </div>
-
-                <form class="auth-form-content">
-                    <!-- User Type Selection -->
-                    <div class="user-type-selection">
-                        <label class="user-type-label">I am a:</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="signupUserType" value="client" checked>
-                                <span class="radio-custom"></span>
-                                Client (Student)
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="signupUserType" value="admin">
-                                <span class="radio-custom"></span>
-                                Admin
-                            </label>
-                        </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signupForm" class="auth-form">
+                <div class="logo-section">
+                    <h1>Academic Support</h1>
+                    <p>Your academic success partner</p>
+                </div>
+                
+                <h2>Create Account</h2>
+                <p class="subtitle">Join our academic community</p>
+                
+                <form id="signupFormElement">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-
+                    
                     <div class="form-group">
                         <label for="signupEmail">Email Address</label>
-                        <input type="email" id="signupEmail" name="email" required>
+                        <input type="email" id="signupEmail" required>
                     </div>
-
+                    
+                    <div class="form-group">
+                        <label for="signupPhone">Phone Number</label>
+                        <input type="tel" id="signupPhone" required>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="signupPassword">Password</label>
-                        <div class="password-input">
-                            <input type="password" id="signupPassword" name="password" required>
-                            <i class="fas fa-eye toggle-password" onclick="togglePassword('signupPassword')"></i>
-                        </div>
+                        <input type="password" id="signupPassword" required>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
-                        <div class="password-input">
-                            <input type="password" id="confirmPassword" name="confirmPassword" required>
-                            <i class="fas fa-eye toggle-password" onclick="togglePassword('confirmPassword')"></i>
-                        </div>
+                        <input type="password" id="confirmPassword" required>
                     </div>
-
-                    <div class="form-group client-only" id="institutionGroup">
-                        <label for="institution">Institution/University</label>
-                        <input type="text" id="institution" name="institution">
-                    </div>
-
-                    <div class="form-options">
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="terms" required>
-                            <span class="checkbox-custom"></span>
-                            I agree to the <a href="#">Terms & Conditions</a>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="auth-btn" onclick="handleSignup(event)">Create Account</button>
-
-                    <div class="auth-switch">
-                        <p>Already have an account? <a href="#" onclick="showLogin()">Sign in</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer (Same as index.html) -->
-     <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="/api/placeholder/120/40" alt="Academic Excellence Logo" class="footer-logo-img">
-                        <span class="footer-logo-text">AcademicExcel</span>
-                    </div>
-                    <p class="footer-desc">Empowering students to achieve academic excellence through personalized support and professional guidance.</p>
                     
-                    <div class="social-links">
-                        <a href="https://facebook.com/academicexcel" class="social-link facebook" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://twitter.com/academicexcel" class="social-link twitter" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://instagram.com/academicexcel" class="social-link instagram" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://linkedin.com/company/academicexcel" class="social-link linkedin" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://youtube.com/academicexcel" class="social-link youtube" target="_blank">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+                    <div class="form-group">
+                        <label for="accountType">Account Type:</label>
+                        <select id="accountType" required>
+                            <option value="">Select Account Type</option>
+                            <option value="client">Client</option>
+                        </select>
                     </div>
-                </div>
+                    
+                    <button type="submit" class="btn-primary">Create Account</button>
+                </form>
                 
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Our Services</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="services.html#assignment-review">Assignment Review</a></li>
-                        <li><a href="services.html#dissertation">Dissertation Support</a></li>
-                        <li><a href="services.html#tutoring">Personal Tutoring</a></li>
-                        <li><a href="services.html#proofreading">Proofreading</a></li>
-                        <li><a href="services.html#editing">Professional Editing</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="login.html">Student Portal</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#support">Help Center</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms of Service</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@academicexcel.co.za</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+27 (0) 11 123 4567</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Johannesburg, South Africa</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Mon - Fri: 8:00 AM - 8:00 PM</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2025 Academic Excellence Services. All rights reserved.</p>
-                    <div class="footer-bottom-links">
-                        <a href="#careers">Careers</a>
-                        <a href="#partnership">Partnership</a>
-                        <a href="#media">Media Kit</a>
-                        <a href="#sitemap">Sitemap</a>
-                    </div>
+                <div class="auth-switch">
+                    <p>Already have an account? <a href="#" id="showLogin">Sign In</a></p>
+                    <p><a href="index.html">← Back to Home</a></p>
                 </div>
             </div>
         </div>
-    </footer>
-
+    </div>
 
     <script>
-        // Toggle between login and signup forms
-        function showSignup() {
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('signupForm').classList.remove('hidden');
-        }
-
-        function showLogin() {
-            document.getElementById('signupForm').classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-        }
-
-        // Toggle password visibility
-        function togglePassword(inputId) {
-            const input = document.getElementById(inputId);
-            const icon = input.nextElementSibling;
+        // Form switching functionality
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.remove('active');
+            signupForm.classList.add('active');
+        });
+        
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupForm.classList.remove('active');
+            loginForm.classList.add('active');
+        });
+        
+        // Login form submission
+        document.getElementById('loginFormElement').addEventListener('submit', (e) => {
+            e.preventDefault();
             
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        }
-
-        // Handle login form submission
-        function handleLogin(event) {
-            event.preventDefault();
-            const userType = document.querySelector('input[name="userType"]:checked').value;
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-
-            // Basic validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-
-            // Simulate login process (replace with actual authentication)
-            console.log('Login attempt:', { userType, email });
+            const userType = document.getElementById('userType').value;
             
-            // Redirect based on user type
-            if (userType === 'admin') {
-                window.location.href = 'adminportal.html';
+            // Demo authentication
+            if ((email === 'client@demo.com' && password === 'password123' && userType === 'client') ||
+                (email === 'admin@demo.com' && password === 'admin123' && userType === 'admin')) {
+                
+                // Store user data in localStorage for demo
+                localStorage.setItem('currentUser', JSON.stringify({
+                    email: email,
+                    userType: userType,
+                    name: userType === 'admin' ? 'Admin User' : 'Client User',
+                    isLoggedIn: true
+                }));
+                
+                // Redirect to appropriate portal
+                if (userType === 'client') {
+                    window.location.href = 'clientportal.html';
+                } else {
+                    window.location.href = 'adminportal.html';
+                }
             } else {
-                window.location.href = 'studentportal.html';
+                alert('Invalid credentials. Please use the demo credentials provided.');
             }
-        }
-
-        // Handle signup form submission
-        function handleSignup(event) {
-            event.preventDefault();
-            const userType = document.querySelector('input[name="signupUserType"]:checked').value;
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
+        });
+        
+        // Signup form submission
+        document.getElementById('signupFormElement').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('signupName').value;
             const email = document.getElementById('signupEmail').value;
+            const phone = document.getElementById('signupPhone').value;
             const password = document.getElementById('signupPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-
-            // Basic validation
-            if (!firstName || !lastName || !email || !password || !confirmPassword) {
-                alert('Please fill in all fields');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-
-            // Simulate signup process (replace with actual registration)
-            console.log('Signup attempt:', { userType, firstName, lastName, email });
+            const accountType = document.getElementById('accountType').value;
             
-            // Redirect based on user type after signup
-            alert('Account created successfully!');
-            if (userType === 'admin') {
-                window.location.href = 'adminportal.html';
-            } else {
-                window.location.href = 'studentportal.html';
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
             }
-        }
-
-        // Show/hide institution field based on user type selection
-        document.addEventListener('DOMContentLoaded', function() {
-            const signupUserTypeInputs = document.querySelectorAll('input[name="signupUserType"]');
-            const institutionGroup = document.getElementById('institutionGroup');
-
-            signupUserTypeInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    if (this.value === 'client') {
-                        institutionGroup.style.display = 'block';
-                    } else {
-                        institutionGroup.style.display = 'none';
-                    }
-                });
-            });
-
-            // Search functionality (from index.html)
-            const searchIcon = document.getElementById('searchIcon');
-            const searchDropdown = document.getElementById('searchDropdown');
-            let searchTimeout;
-
-            searchIcon.addEventListener('click', function() {
-                searchDropdown.classList.toggle('active');
-                if (searchDropdown.classList.contains('active')) {
-                    searchDropdown.querySelector('.search-input').focus();
-                    clearTimeout(searchTimeout);
-                    searchTimeout = setTimeout(() => {
-                        searchDropdown.classList.remove('active');
-                    }, 10000);
-                }
-            });
-
-            // Close search when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.search-container')) {
-                    searchDropdown.classList.remove('active');
-                }
-            });
+            
+            // For demo purposes, just show success message
+            alert('Account created successfully! You can now sign in with your credentials.');
+            
+            // Switch back to login form
+            signupForm.classList.remove('active');
+            loginForm.classList.add('active');
+            
+            // Clear form
+            document.getElementById('signupFormElement').reset();
         });
     </script>
 </body>
